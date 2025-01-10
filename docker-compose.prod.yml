@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  scientific-document-assistant:
+    container_name: scientific-document-assistant-prod
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+      args:
+        - NODE_ENV=production
+    ports:
+      - '${PORT:-80}:80'
+    env_file:
+      - .env.production
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    name: scientific-document-assistant-network-prod
+    driver: bridge

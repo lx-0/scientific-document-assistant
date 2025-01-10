@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  scientific-document-assistant:
+    container_name: scientific-document-assistant-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - '${PORT:-5173}:5173'
+    env_file:
+      - .env.development
+    environment:
+      - NODE_ENV=development
+    command: npm run dev -- --host 0.0.0.0
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    name: scientific-document-assistant-network-dev
+    driver: bridge

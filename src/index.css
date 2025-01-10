@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom styles for resize handles */
+[data-panel-resize-handle-id] {
+  @apply touch-none select-none;
+}
+
+[data-panel-resize-handle-id]:hover {
+  @apply cursor-col-resize;
+}
+
+/* Scrollbar styles */
+[data-radix-scroll-area-viewport] {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+[data-radix-scroll-area-viewport]::-webkit-scrollbar {
+  display: none;
+}
+
+/* Save feedback animation */
+@keyframes saveFeedback {
+  0% {
+    border-color: #93c5fd;
+    box-shadow: 0 0 0 1px #93c5fd;
+  }
+  100% {
+    border-color: #e5e7eb;
+    box-shadow: none;
+  }
+}
+
+.save-feedback {
+  animation: saveFeedback 1s ease-out;
+}
+
+/* Monaco Editor overrides */
+.monaco-editor {
+  padding: 1rem;
+}
+
+.monaco-editor .margin {
+  background-color: transparent !important;
+}
+
+/* Proposed change styles */
+.proposed-change-line {
+  background-color: rgba(96, 165, 250, 0.1);
+  border-left: 2px solid #60a5fa;
+}
+
+.proposed-change-glyph {
+  background-color: #60a5fa;
+  width: 4px !important;
+  margin-left: 5px;
+}
+
+/* Scoped prose styles */
+.prose {
+  @apply max-w-none;
+}
+
+.prose pre {
+  @apply bg-gray-50 p-4 rounded-lg;
+}
+
+.prose code {
+  @apply bg-gray-50 px-1.5 py-0.5 rounded-md text-sm;
+}
+
+.prose img {
+  @apply mx-auto my-4 rounded-lg;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply mt-8 mb-4 font-semibold;
+}
